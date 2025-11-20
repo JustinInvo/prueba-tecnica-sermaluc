@@ -1,4 +1,3 @@
-// /utils/matrix.ts
 export type Matrix = number[][]
 
 export class MatrixError extends Error {

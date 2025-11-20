@@ -2,11 +2,11 @@
 
 export function ActionsBar({
   onRotate,
-  onReset,
+  // onReset,
   onRandom
 }: {
   onRotate: () => void
-  onReset: () => void
+  // onReset: () => void
   onRandom: () => void
 }) {
   return (
@@ -18,12 +18,12 @@ export function ActionsBar({
         Rotate 90°
       </button>
 
-      <button
+      {/* <button
         className="px-4 py-2 bg-red-600 text-white rounded"
         onClick={onReset}
       >
         Reset
-      </button>
+      </button> */}
 
       <button
         className="px-4 py-2 bg-green-600 text-white rounded"

@@ -1,5 +1,3 @@
-// /app/rotate/page.tsx
-import React from 'react'
 import { MatrixEditor } from '@/components/MatrixEditor'
 import type { Metadata } from 'next'
 

@@ -10,16 +10,12 @@ import { SizeSelector } from "./SizeSelector"
 import { ActionsBar } from "./ActionBar"
 import { rotate90CCW, defaultMatrix, randomMatrix } from "@/utils/matrix"
 
-// ---------- Component ----------
-
 export function MatrixEditor({ initial }: { initial?: Matrix }) {
   const [matrix, setMatrix] = useState(initial ?? defaultMatrix(3))
   const [jsonText, setJsonText] = useState(JSON.stringify(matrix))
 
   // Rotated matrix
   const rotated = useMemo(() => rotate90CCW(matrix), [matrix])
-
-  // --- Handlers ---
 
   function updateCell(i: number, j: number, value: string) {
     const parsed = Number(value)
@@ -66,6 +62,7 @@ export function MatrixEditor({ initial }: { initial?: Matrix }) {
         jsonText={jsonText}
         onChange={setJsonText}
         onPasteJson={pasteJson}
+        onReset={() => reset(matrix.length)}
       />
 
       <SizeSelector 
@@ -75,7 +72,7 @@ export function MatrixEditor({ initial }: { initial?: Matrix }) {
 
       <ActionsBar
         onRotate={() => setMatrix(rotate90CCW(matrix))}
-        onReset={() => reset(matrix.length)}
+        // onReset={() => reset(matrix.length)}
         onRandom={randomize}
       />
 

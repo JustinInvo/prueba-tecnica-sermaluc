@@ -1,8 +1,9 @@
 'use client'
 
 import { useMatrixValidator } from "@/hooks/useMatrixValidator";
+import { useEffect } from "react";
 
-export function JsonInput({ jsonText, onChange, onPasteJson }: any) {
+export function JsonInput({ jsonText, onChange, onPasteJson, onReset }: any) {
   const { error, validate } = useMatrixValidator();
 
   function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -12,10 +13,22 @@ export function JsonInput({ jsonText, onChange, onPasteJson }: any) {
     validate(cleaned);
   }
 
+  function handleControlReset() {
+    onReset();
+  }
+
+  useEffect(() => {
+    if (jsonText.trim() === "") {
+      validate("[]"); // matriz válida
+      return;
+    }
+    validate(jsonText);
+  }, [jsonText]);
+
+
   return (
     <div className="mb-4 space-y-2">
       <label className="block text-sm">Pegar / editar JSON</label>
-
       <textarea
         value={jsonText}
         onChange={handleInput}
@@ -35,6 +48,13 @@ export function JsonInput({ jsonText, onChange, onPasteJson }: any) {
           `}
         >
           Cargar JSON
+        </button>
+
+        <button
+          onClick={handleControlReset}
+          className="px-3 py-1 rounded border-[2px] border-[#0071ff] text-[#0071ff]"
+        >
+          Reset
         </button>
       </div>
     </div>
